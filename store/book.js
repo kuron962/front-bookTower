@@ -16,8 +16,13 @@ export const mutations = {
 
 export const actions = {
   async load({ commit, dispatch }) {
-    const url = "/api/book-list"; // 接続先URL
-    const response = await this.$axios.$get(url); // GET
+    const url = "/api/books";
+    const response = await this.$axios.$get(url);
     commit("sBooks", response);
+  },
+
+  async add({ commit, dispatch }, data) {
+    const url = "/api/book/add";
+    const response = await this.$axios.$post(url, data);
   },
 };
