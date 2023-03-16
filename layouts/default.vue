@@ -1,6 +1,6 @@
 <template>
   <v-app class="app">
-    <v-app-bar max-height="64px">
+    <v-app-bar app>
       <v-toolbar-title>BookTower</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn class="ma-3" to="/"> 一覧 </v-btn>
@@ -14,6 +14,8 @@
 
 <style scoped>
 .app {
-  background-color: aliceblue;
+  background-image: url(..\static\background.jpg);
+  background-size: cover;
+  background-attachment: fixed;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card class="ma-3 pa-3" max-width="540">
+    <v-card class="ma-3 pa-9" max-width="70%">
       <v-text-field
         v-model="title"
         color="primary"

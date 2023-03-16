@@ -4,12 +4,12 @@
       <v-row>
         <v-list-item v-for="book in gBooks" :key="book.id">
           <v-col cols="12" lg="6">
-            <v-dialog v-model="dialog">
+            <v-dialog v-model="dialog" max-width="70%">
               <book-dialog @delete-book="deleteBook" />
             </v-dialog>
             <v-card
+              color="transparent"
               class="pa-3"
-              outlined
               width="100%"
               @click="openDialog(book.id)"
             >
@@ -34,8 +34,10 @@
                 label
                 >{{ book.status }}</v-chip
               >
-              <v-card-title>{{ book.title }}</v-card-title>
-              <v-card-subtitle>{{ book.category }}</v-card-subtitle>
+              <v-card-title class="white--text">{{ book.title }}</v-card-title>
+              <v-card-subtitle class="white--text">{{
+                book.category
+              }}</v-card-subtitle>
             </v-card>
           </v-col>
         </v-list-item>
