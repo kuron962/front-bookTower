@@ -1,6 +1,6 @@
 export const state = () => ({
   books: [],
-  thisBook: { title: "こんにちは", category: "教養", status: "未読" },
+  thisBook: {},
 });
 
 export const getters = {
@@ -28,18 +28,24 @@ export const actions = {
     commit("sBooks", response);
   },
 
-  async getBook({ commit, dispatch }, id) {
-    const url = `/api/books/id${id}`;
+  async getBookById({ commit, dispatch }, id) {
+    const url = `/api/books/${id}`;
     const response = await this.$axios.$get(url);
     commit("sThisBook", response);
   },
 
-  async add({ commit, dispatch }, data) {
+  async addBook({ commit, dispatch }, data) {
     const url = "/api/book/add";
     const response = await this.$axios.$post(url, data);
   },
 
-  async delete({ commit, dispatch }, id) {
+  async editBook({ commit, dispatch }, { id, data }) {
+    const url = `/api/book/edit/${id}`;
+    console.log("★", id, data);
+    const response = await this.$axios.$post(url, data);
+  },
+
+  async deleteBook({ commit, dispatch }, id) {
     const url = `/api/book/delete/${id}`;
     const response = await this.$axios.$delete(url);
   },
