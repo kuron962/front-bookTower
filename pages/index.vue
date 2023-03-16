@@ -1,22 +1,39 @@
 <template>
   <v-container>
-    <v-list>
+    <v-list color="transparent">
       <v-row>
         <v-list-item v-for="book in gBooks" :key="book.id">
           <v-col cols="12" lg="6">
             <v-dialog v-model="dialog">
-              <book-delete-dialog @click-submit="deleteBook" />
+              <book-dialog @delete-book="deleteBook" />
             </v-dialog>
-            <v-card width="100%" @click="openDialog(book.id)">
-              <v-chip v-if="book.status === '未読'" color="red" label>{{
-                book.status
-              }}</v-chip>
-              <v-chip v-if="book.status === '読書中'" color="orange" label>{{
-                book.status
-              }}</v-chip>
-              <v-chip v-if="book.status === '読了'" color="green" label>{{
-                book.status
-              }}</v-chip>
+            <v-card
+              class="pa-3"
+              outlined
+              width="100%"
+              @click="openDialog(book.id)"
+            >
+              <v-chip
+                outlined
+                v-if="book.status === '未読'"
+                color="red"
+                label
+                >{{ book.status }}</v-chip
+              >
+              <v-chip
+                outlined
+                v-if="book.status === '読書中'"
+                color="orange"
+                label
+                >{{ book.status }}</v-chip
+              >
+              <v-chip
+                outlined
+                v-if="book.status === '読了'"
+                color="green"
+                label
+                >{{ book.status }}</v-chip
+              >
               <v-card-title>{{ book.title }}</v-card-title>
               <v-card-subtitle>{{ book.category }}</v-card-subtitle>
             </v-card>
@@ -29,10 +46,10 @@
 
 <script>
 import { mapGetters } from "vuex";
-import BookDeleteDialog from "~/components/BookDeleteDialog.vue";
+import BookDialog from "~/components/BookDialog.vue";
 
 export default {
-  components: { BookDeleteDialog },
+  components: { BookDialog },
   data() {
     return {
       dialog: false,
@@ -47,22 +64,22 @@ export default {
   },
 
   mounted() {
-    this.getBook();
+    this.load();
   },
 
   methods: {
-    async getBook() {
+    async load() {
       await this.$store.dispatch("book/load");
     },
     async openDialog(id) {
       this.dialog = true;
-      await this.$store.dispatch("book/getBook", id);
+      await this.$store.dispatch("book/getBookById", id);
     },
     closeDialog() {
       this.dialog = false;
     },
     async deleteBook(id) {
-      await this.$store.dispatch("book/delete", id);
+      await this.$store.dispatch("book/deleteBook", id);
       this.dialog = false;
       await this.$store.dispatch("book/load");
     },

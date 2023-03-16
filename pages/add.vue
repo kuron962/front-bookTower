@@ -15,7 +15,7 @@
         variant="underlined"
       ></v-text-field>
 
-      <v-select v-model="state" :items="status"></v-select>
+      <v-select v-model="status" :items="done"></v-select>
       <v-card-actions>
         <v-spacer />
         <v-btn @click="clear" class="ma-4">クリア</v-btn>
@@ -30,16 +30,16 @@ export default {
   data: () => ({
     title: null,
     category: null,
-    state: "未読",
-    status: ["未読", "読書中", "読了"],
+    status: "未読",
+    done: ["未読", "読書中", "読了"],
   }),
 
   methods: {
     async addBook() {
-      await this.$store.dispatch("book/add", {
+      await this.$store.dispatch("book/addBook", {
         title: this.title,
         category: this.category,
-        status: this.state,
+        status: this.status,
       });
       this.clear();
     },
@@ -47,7 +47,7 @@ export default {
     clear() {
       this.title = null;
       this.category = null;
-      this.state = "未読";
+      this.status = "未読";
     },
   },
 };
