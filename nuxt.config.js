@@ -14,11 +14,6 @@ export default {
       { hid: "description", name: "description", content: "" },
       { name: "format-detection", content: "telephone=no" },
     ],
-    // script: [
-    // { src: "../static/particles.min.js" },
-    // { src: "../static/app.js" },
-    // { src: "../static/square.js" },
-    // ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
 
@@ -41,9 +36,6 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
-    // "~/modules/particles.min.js",
-    // "~/modules/app.js",
-    // "~/modules/square.js",
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

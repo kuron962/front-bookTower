@@ -22,30 +22,30 @@ export const mutations = {
 };
 
 export const actions = {
-  async load({ commit, dispatch }) {
+  async load({ commit }) {
     const url = "/api/books";
     const response = await this.$axios.$get(url);
     commit("sBooks", response);
   },
 
-  async getBookById({ commit, dispatch }, id) {
+  async getBookById({ commit }, id) {
     const url = `/api/books/${id}`;
     const response = await this.$axios.$get(url);
     commit("sThisBook", response);
   },
 
-  async addBook({ commit, dispatch }, data) {
+  async addBook({}, data) {
     const url = "/api/book/add";
     const response = await this.$axios.$post(url, data);
   },
 
-  async editBook({ commit, dispatch }, { id, data }) {
+  async editBook({}, { id, data }) {
     const url = `/api/book/edit/${id}`;
     console.log("★", id, data);
     const response = await this.$axios.$post(url, data);
   },
 
-  async deleteBook({ commit, dispatch }, id) {
+  async deleteBook({}, id) {
     const url = `/api/book/delete/${id}`;
     const response = await this.$axios.$delete(url);
   },

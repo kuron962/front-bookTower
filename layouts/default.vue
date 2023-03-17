@@ -7,7 +7,6 @@
       <v-btn class="ma-3" to="/add"> 追加 </v-btn>
     </v-app-bar>
     <v-main>
-      <!-- <div id="square"></div> -->
       <Nuxt />
     </v-main>
   </v-app>
@@ -15,7 +14,6 @@
 
 <style scoped>
 .app {
-  /* background-image: url(..\static\background.jpg); */
   background-size: cover;
   background-attachment: fixed;
   background: linear-gradient(-135deg, #e4a972, #9941d8);
