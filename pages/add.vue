@@ -42,6 +42,7 @@ export default {
         status: this.status,
       });
       this.clear();
+      window.alert("本を追加しました");
     },
 
     clear() {
