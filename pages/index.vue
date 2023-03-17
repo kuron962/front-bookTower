@@ -4,7 +4,7 @@
       <v-row>
         <v-list-item v-for="book in gBooks" :key="book.id">
           <v-col cols="12" lg="6">
-            <v-dialog v-model="dialog" max-width="70%">
+            <v-dialog v-model="dialog" max-width="70%" :retain-focus="false">
               <book-dialog @delete-book="deleteBook" />
             </v-dialog>
             <v-card
