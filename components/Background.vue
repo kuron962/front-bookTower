@@ -9,178 +9,111 @@ if (process.browser) {
 
 export default {
   props: {
-    colors: {
-      type: Array,
-      require: false,
-      default: () => [],
+    pt: {
+      type: Number,
+      required: true,
     },
   },
-  mounted() {
-    // https://github.com/VincentGarreau/particles.js/
+  async mounted() {
+    await this.$store.dispatch("book/load");
     window.particlesJS("particles", {
-      // シェイプ設定
       particles: {
-        // シェイプ数
         number: {
-          // 要素内に表示するシェイプの数
-          value: 10,
+          // ノードの数は登録書籍の状況に応じて変化
+          value: this.pt,
           density: {
-            // シェイプ表示間隔設定
             enable: true,
-            // シェイプ表示間隔指定
-            value_area: 600,
+            value_area: 800,
           },
         },
-        // シェイプ色
         color: {
-          value: this.colors,
+          value: "#ffffff",
         },
-
-        // シェイプの設定
         shape: {
-          // シェイプ形
-          type: "circle", // circle, edge, triangle, polygon, star, image 複数指定["circle", "triangle", "image"]
-
-          // シェイプボーダー設定
+          type: "circle",
           stroke: {
-            // ボーダー幅
             width: 0,
-            // ボーダー色
             color: "#000000",
           },
-
-          // シェイプの形でpolygonを指定した場合
           polygon: {
-            // ポリゴン角数指定
             nb_sides: 5,
           },
-
-          // シェイプの形でimageを指定した場合
           image: {
-            // 画像パス
-            src: "",
-            // 画像幅
+            src: "img/github.svg",
             width: 100,
-            // 画像高
             height: 100,
           },
         },
-
-        // シェイプ透過率指定
         opacity: {
-          // 透過率指定
-          value: 0.25,
-          // ランダム設定
-          random: true,
-
-          // 透過アニメーション設定
+          value: 0.5,
+          random: false,
           anim: {
-            // アニメーション設定
-            enable: true,
-            // アニメーション速度
-            speed: 0.1,
-            // アニメーション最小透過率
+            enable: false,
+            speed: 1,
             opacity_min: 0.1,
-            // アニメーション同期
             sync: false,
           },
         },
-
-        // シェイプサイズ
         size: {
-          // シェイプサイズ指定
-          value: 120,
-          // ランダムサイズ
+          value: 5,
           random: true,
-          // サイズアニメーション設定
           anim: {
-            // アニメーション設定
-            enable: true,
-            // アニメーション速度
-            speed: 10,
-            // アニメーション最小サイズ,
-            size_min: 15,
-            // アニメーション同期設定
+            enable: false,
+            speed: 40,
+            size_min: 0.1,
             sync: false,
           },
         },
-
-        // シェイプを線で繋ぐか
         line_linked: {
-          // 線の設定
-          enable: false,
-          // 線の間隔
+          enable: true,
           distance: 150,
-          // 線の色
           color: "#ffffff",
-          // 線の透過率
           opacity: 0.4,
-          // 線の幅
           width: 1,
         },
-
-        // シェイプの動き
         move: {
-          // 動きを制御するか
           enable: true,
-          // 動く速度
-          speed: 5,
-          // 動く方向
-          direction: "none", // none, top, top-right, right, bottom-right, bottom, bottom-left, left, top-left
-          // ランダム
-          random: true,
-          // 静止状態にする
+          speed: 1,
+          direction: "none",
+          random: false,
           straight: false,
-          // シェイプの動き
-          out_mode: "out", // bounce:ボックス内で動かす out:ボックス外に逃がす
-          // 移動中に塊始めるようにする
+          out_mode: "out",
           attract: {
             enable: false,
-            rotateX: 1000,
-            rotateY: 1000,
+            rotateX: 600,
+            rotateY: 1200,
           },
         },
       },
-
-      // インタラクティブ設定
       interactivity: {
         detect_on: "canvas",
-
-        // マウスイベント設定
         events: {
-          // マウスオーバー時
           onhover: {
             enable: false,
-            mode: "repulse", // grad:付近のシェイプと線を繋ぐ, bubble:拡大, repulse:反発
+            mode: "repulse",
           },
-
-          // クリック時
           onclick: {
-            // クリック時の処理
             enable: false,
-            // クリック時の処理
-            mode: "repulse", // push:追加, remove:削除, bubble:拡大, repulse:反発
+            mode: "push",
           },
           resize: true,
         },
-
-        // 各モード設定
         modes: {
           grab: {
-            distance: 300,
+            distance: 400,
             line_linked: {
               opacity: 1,
             },
           },
           bubble: {
-            distance: 100,
-            size: 7.5,
+            distance: 400,
+            size: 40,
             duration: 2,
             opacity: 8,
             speed: 3,
           },
           repulse: {
-            distance: 100,
+            distance: 200,
           },
           push: {
             particles_nb: 4,
@@ -190,8 +123,15 @@ export default {
           },
         },
       },
-      // Retina Display対応
       retina_detect: true,
+      config_demo: {
+        hide_card: false,
+        background_color: "#b61924",
+        background_image: "",
+        background_position: "50% 50%",
+        background_repeat: "no-repeat",
+        background_size: "cover",
+      },
     });
   },
 };
@@ -204,6 +144,6 @@ export default {
   right: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
+  z-index: 0;
 }
 </style>

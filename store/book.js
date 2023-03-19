@@ -10,6 +10,12 @@ export const getters = {
   gThisBook(state) {
     return state.thisBook;
   },
+  gBookPoint(state) {
+    const low = state.books.filter((x) => x.status === "未読").length;
+    const mid = state.books.filter((x) => x.status === "読書中").length * 5;
+    const high = state.books.filter((x) => x.status === "読了").length * 10;
+    return low + mid + high;
+  },
 };
 
 export const mutations = {

@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <Background :pt="gBookPoint !== 0 ? gBookPoint : 1" />
     <v-list color="transparent">
       <v-row>
         <v-list-item v-for="book in gBooks" :key="book.id">
@@ -9,7 +10,7 @@
             </v-dialog>
             <v-card
               color="transparent"
-              class="pa-3 card"
+              class="pa-3"
               width="100%"
               @click="openDialog(book.id)"
             >
@@ -49,9 +50,10 @@
 <script>
 import { mapGetters } from "vuex";
 import BookDialog from "~/components/BookDialog.vue";
+import Background from "~/components/Background";
 
 export default {
-  components: { BookDialog },
+  components: { BookDialog, Background },
   data() {
     return {
       dialog: false,
@@ -62,6 +64,7 @@ export default {
     ...mapGetters({
       gBooks: "book/gBooks",
       gThisBook: "book/gThisBook",
+      gBookPoint: "book/gBookPoint",
     }),
   },
 
@@ -88,10 +91,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.card {
-  position: relative;
-  z-index: 10;
-}
-</style>
