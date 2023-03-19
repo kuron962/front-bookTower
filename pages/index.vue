@@ -9,7 +9,7 @@
             </v-dialog>
             <v-card
               color="transparent"
-              class="pa-3"
+              class="pa-3 card"
               width="100%"
               @click="openDialog(book.id)"
             >
@@ -88,3 +88,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.card {
+  position: relative;
+  z-index: 10;
+}
+</style>
